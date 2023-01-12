@@ -1,4 +1,4 @@
-package com.uniyaz.sakila.core.country;
+package com.uniyaz.sakila.core.country.domain;
 
 import com.uniyaz.sakila.core.common.BaseEntity;
 import org.hibernate.envers.Audited;
