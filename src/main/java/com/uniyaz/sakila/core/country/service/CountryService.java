@@ -48,6 +48,11 @@ public class CountryService {
             return new ResponseEntity(countryList,HttpStatus.BAD_REQUEST);
         }
     }
+    public List<Country> findAllByName(String countryName) {
+        return countryDao.findAllByName(countryName);
+    }
+
+
 
 
 }

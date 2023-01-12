@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = "com.uniyaz")
 @EnableJpaRepositories(basePackages = "com.uniyaz")
 @EntityScan(basePackages = "com.uniyaz")
+
 public class SakilaRestApplication {
 
 	public static void main(String[] args) {
