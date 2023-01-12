@@ -3,11 +3,14 @@ package com.uniyaz.sakila.core.filmactor.domain;
 import com.uniyaz.sakila.core.actor.domain.Actor;
 import com.uniyaz.sakila.core.common.BaseEntity;
 import com.uniyaz.sakila.core.film.domain.Film;
-import org.hibernate.annotations.ForeignKey;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Table(name = "film_actor")
+@Table(name = "film_actor", indexes = {
+        @Index(name = "ix_film_actor_actor_id", columnList = "actor_id"),
+        @Index(name = "ix_film_actor_film_id", columnList = "film_id")
+})
 @Entity
 public class FilmActor extends BaseEntity {
 
@@ -17,13 +20,13 @@ public class FilmActor extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "film_id")
-    @ForeignKey(name = "fk_film_actor_film")
+    @JoinColumn(name = "film_id",
+            foreignKey = @ForeignKey(name = "fk_film_actor_film"))
     private Film film;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "actor_id")
-    @ForeignKey(name = "fk_film_actor_actor")
+    @JoinColumn(name = "actor_id",
+            foreignKey = @ForeignKey(name = "fk_film_actor_actor"))
     private Actor actor;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -67,7 +70,7 @@ public class FilmActor extends BaseEntity {
     public String toString() {
         return "FilmActor{" +
                 "id=" + id +
-                ", film=" + film.getTitle()+
+                ", film=" + film.getTitle() +
                 ", actor=" + actor.getFirstName() +
                 ", lastUpdate=" + lastUpdate +
                 '}';

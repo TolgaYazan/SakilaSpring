@@ -53,6 +53,7 @@ public class CountryService {
     }
 
 
-
-
+    public Country findById(Long countryId) {
+        return countryDao.findById(countryId).get();
+    }
 }
