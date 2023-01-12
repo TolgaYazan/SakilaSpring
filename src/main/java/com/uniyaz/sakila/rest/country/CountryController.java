@@ -4,6 +4,7 @@ package com.uniyaz.sakila.rest.country;
 import com.uniyaz.sakila.core.country.CountryConverter;
 import com.uniyaz.sakila.core.country.CountryDto;
 import com.uniyaz.sakila.core.country.domain.Country;
+import com.uniyaz.sakila.core.country.dto.CountryCityCountDto;
 import com.uniyaz.sakila.core.country.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,21 +25,27 @@ public class CountryController {
     @Autowired
     CountryConverter countryConverter;
 
-    @PostMapping(path= "save")
-    public ResponseEntity save(@RequestBody Country country){
+    @PostMapping(path = "save")
+    public ResponseEntity save(@RequestBody Country country) {
         return countryService.save(country);
     }
 
     @GetMapping(path = "findAll")
-    public ResponseEntity findAll(){
+    public ResponseEntity findAll() {
         return countryService.findAll();
     }
 
-    @DeleteMapping(path = "/delete")
-    public ResponseEntity delete(@RequestParam Long id){
-        return countryService.delete(id);
+    @GetMapping(path = "findCountryCityCountDto")
+    public ResponseEntity findCountryCityCountDto() {
+        List<CountryCityCountDto> countryCityCountDtoList = countryService.findCountryCityCountDto();
+        ResponseEntity responseEntity = new ResponseEntity(countryCityCountDtoList, HttpStatus.OK);
+        return responseEntity;
     }
 
+    @DeleteMapping(path = "/delete")
+    public ResponseEntity delete(@RequestParam Long id) {
+        return countryService.delete(id);
+    }
 
 
     @GetMapping(path = "findAllByName", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,7 +60,6 @@ public class CountryController {
             return responseEntity;
         }
     }
-
 
 
 }

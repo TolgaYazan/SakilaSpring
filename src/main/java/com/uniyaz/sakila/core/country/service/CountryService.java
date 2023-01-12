@@ -3,6 +3,7 @@ package com.uniyaz.sakila.core.country.service;
 import com.uniyaz.sakila.core.actor.domain.Actor;
 import com.uniyaz.sakila.core.country.dao.CountryDao;
 import com.uniyaz.sakila.core.country.domain.Country;
+import com.uniyaz.sakila.core.country.dto.CountryCityCountDto;
 import com.uniyaz.sakila.utils.REnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,5 +56,9 @@ public class CountryService {
 
     public Country findById(Long countryId) {
         return countryDao.findById(countryId).get();
+    }
+
+    public List<CountryCityCountDto> findCountryCityCountDto() {
+        return countryDao.findCountryCityCountDto();
     }
 }
